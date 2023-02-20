@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Aplicaciones Web Interactivas con Shiny</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="✨ 💻 ✨" />
+    <meta name="date" content="2020-01-01" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <script src="libs/peerjs/peerjs.min.js"></script>
+    <script src="libs/tiny.toast/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast/broadcast.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Aplicaciones Web Interactivas con Shiny
+### ✨ 💻 ✨
+### Conferencia LatinR
+### 2020
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+class: center, middle
+
+# Licencia
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.
+
+---
+
+class: center, inverse, bottom
+background-image: url("Shiny_grande.jpg")
+background-position: 50% 50%
+
+## Aplicaciones Web Interactivas con R
+
+---
+
+# ¡Comencemos!
+
+Una Shiny App  es una página web (UI) conectada a una computadora que ejecuta una sesión de R en vivo (Server)
+
+
+&lt;img src="cheat1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+--
+
+Los usuarios pueden manipular la UI,  lo cual lleva al server (_servidor_) a enviar una actualización de la UI exhibida (mediante ejecución de código en R).
+
+
+.footnote[Source: Guía Rápida Shiny - RStudio.]
+
+---
+
+# App.R 📄
+
+
+
+```r
+library(shiny)
+
+# Interfaz de usuario (UI de las siglas en inglés)
+ui &lt;- fluidPage( ) 
+
+# Servidor
+Server &lt;- function(input, output){      }
+
+# Combino UI y Servidor
+shinyApp (ui = ui, server = server)
+```
+
+---
+
+# Snippets
+
+Podes insertar la plantilla precargada
+
+&lt;img src="snippet_2.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+# Construyendo una Shiny app
+
+&lt;img src="cheat1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+--
+
+.pull-left[
+
+**UI**
+
+1. Añadí la plantilla -&gt; ***app.R***
+
+1. Selecciona una función de diseño (_layout_) 
+
+1. Selecciona y organiza los inputs 
+
+]
+--
+.pull-right[
+
+**Server**
+
+1. Referite a las entradas esperadas usando `input$&lt;id&gt;`
+
+1. Selecciona las funciones `render*()` y `*Output()` 
+
+1. Referite a las salidas esperadas usando `output$&lt;id&gt;`
+
+
+]
+
+---
+
+# Ejecutá la Shinyapp 🎬
+
+* Dale click al botón `Run App` en la barra de tareas.
+
+
+&lt;img src="run_app.png" width="25%" style="display: block; margin: auto;" /&gt;
+
+
+* Usa un atajo del teclado: Cmd/Ctrl + Shift + Enter.
+
+* Ejecuta `shiny::runApp()` incluyendo la ruta al archivo  **app.R**
+
+.footnote[Source: https://mastering-shiny.org/basic-app.html]
+
+---
+
+# Guía Rápida
+
+[¡Click de descarga de la versión en español!](https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/shiny_Spanish.pdf)
+
+&lt;img src="cheatsheet.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+class: center, middle
+
+# User Interfase (UI)
+
+&lt;img src="mamu_4.jpg" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# ¿Qué es la interfaz de usuario?
+
+&gt; La UI es dónde se define cómo se verá su aplicación. 
+
+--
+
+&gt; Las funciones de Shiny que usas en la UI serán traducidas a código HTML y CSS que los navegadores web pueden leer y representar en forma de una aplicación web.
+
+
+
+---
+
+# ¿Cómo organizo la UI?
+
+--
+### ➕ Paneles
+
+- Agrego capas 🧅 
+
+--
+
+### ➕ Funciones de diseño 
+
+- Organizo los elementos dentro de la estructura elegida (arriba, bajo, derecha, izquierda, etc)
+
+
+---
+
+
+class: center, middle, inverse
+
+# Alternando entre paneles
+
+---
+
+# Organizando la app en capas
+
+.left-column[
+&lt;img src="tabs.png" width="300" style="display: block; margin: auto;" /&gt;
+]
+ .right-column[
+Se puede organizar la información en paneles con
+* `tabsetPanel()`
+* `navlistPage()` 
+* `navbarPage()`.
+
+
+```r
+ui &lt;- fluidPage(tabsetPanel(
+     tabPanel("tab 1", "contenido"),
+     tabPanel("tab 2", "contenido"),
+     tabPanel("tab 3", "contenido")))
+```
+
+]
+
+---
+
+class: center, middle, inverse
+
+# Funciones de diseño (*layout*)
+
+---
+
+# Diseño
+
+Organiza los paneles y elementos dentro del diseño (_layout_) de UI que elegiste usando una **función de diseño**
+
+&lt;img src="layout.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+.footnote[Source: Guía Rápida Shiny - RStudio.]
+
+---
+
+class: center, middle
+
+&lt;img src="slide_mamu1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+`ui &lt;- fluidPage(sidebarLayout(sidebarPanel(…), mainPanel(…))`
+
+---
+
+# Pestañas y diseño de paneles
+
+
+
+```r
+ui &lt;- fluidPage(navbarPage(title = "Datos",
+                           tabPanel(title = "panel 1", 
+*                                   sidebarLayout(
+*                                   sidebarPanel(),
+*                            mainPanel())
+                             ), 
+                           tabPanel(title = "panel 2", 
+*                                   sidebarLayout(
+*                                   sidebarPanel(),
+*                            mainPanel()))
+                           ))
+```
+
+--
+* Estructura de una app que pose una barra de navegación `navbarPage()` con dos paneles `tabPanel()`.
+
+--
+* Dentro de cada panel hay una función de diseño `sidebarLayout()` que permite incluir una barra lateral `sidebarPanel()` y un area principal `mainPanel()`
+
+---
+
+class: center, middle, inverse
+
+## Controles de entrada (*input control*)
+
+---
+
+## Funciones de control del entrada (*input control*)
+
+Colecta los valores elegidos por el usuario
+
+&lt;img src="inputs.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+.footnote[Source: Guía Rápida Shiny - RStudio.]
+---
+
+# ¿Cómo elegir?
+
+
+&lt;img src="worst_UI_TW.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: center, middle
+
+# Usando funciones de diseño
+
+&lt;img src="slide_mamu2.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+`ui &lt;- fluidPage(sidebarLayout(sidebarPanel(radioButtons(…)), mainPanel(…))`
+
+---
+# Selección de valores de entrada (*inputs*)🎚
+
+Argumentos de la función `radioButtons()` 
+
+
+```r
+radioButtons(inputId = `"axis_x"`, 
+             label = `"X"`, 
+             choices = c("Highway fuel economy (mpg)" = "hwy",
+                         "Engine displacement (L)" = "displ",
+                         "Car type" = "class"))
+```
+
+---
+
+class: center, middle
+
+Ten cuidado cuando organizas la app
+
+&lt;img src="parentesis.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: center, middle
+
+# ⚠️ ¡Cuidado!  
+
+Las familias pueden ser complejas
+
+&lt;img src="complex.jpg" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: center, middle
+
+&lt;img src="closing_par.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: center, middle
+
+Puedes mirar ejemplos con código de las partes que pueden componer una UI en la siguiente página: [Demos](https://shiny.rstudio.com/gallery/#demos)
+
+
+&lt;img src="mamu_8_sd.jpg" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: center, middle
+
+# Modificaciones a la interfaz de usuario
+
+
+&lt;img src="mamu_1.jpg" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Incluí una imagen
+
+1. Agrega el archivo de la imagen dentro de una carpeta llamada ***www*** 
+1. Agrega el siguiente código para posicionar la imagen en la UI `img(src="&lt;file name&gt;")`
+
+
+&lt;img src="structure.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Agrega un tema: 📦 `shinythemes `
+
+&lt;img src="shinythemes.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Agrega un tema: 📦 `shinythemes `
+
+
+```r
+*ui&lt;- fluidPage(theme = shinytheme("lumen"),
+               h1(strong("R-Ladies Buenos Aires")), 
+               h4(em("Shiny meetup")), 
+     sidebarLayout( sidebarPanel( radioButtons(…) ),
+                                  mainPanel(… ))
+```
+---
+
+# Agrega un tema: boostrap
+
+
+Se agrega el archivo .css a una carpeta `www` (similar a lo que haciamos con las imagenes)
+
+¿Dónde encuentro temas? https://bootswatch.com/
+
+
+
+```r
+ui&lt;- fluidPage(theme = "file.css", #&lt;&lt; #En la carpeta www
+               h1(strong("R-Ladies Buenos Aires")), 
+               h4(em("Shiny meetup")),
+     sidebarLayout( sidebarPanel( radioButtons(…) ),
+                                  mainPanel(… ))
+```
+
+---
+
+# Agrega un título
+
+
+```r
+ui&lt;- fluidPage(theme = shinytheme("lumen"), 
+*              h1(strong("R-Ladies Buenos Aires")),
+*              h4(em("Shiny meetup")),
+     sidebarLayout( sidebarPanel( radioButtons(…) ),
+                                  mainPanel(… ))
+```
+
+
+&lt;img src="header.png" width="609" style="display: block; margin: auto;" /&gt;
+
+.footnote[Source: Shiny RStudio Cheatsheet.]
+
+---
+
+## Esperando: 📦 `Waiter`
+
+Barras o indicadores de espera giratorios. [Ejemplos](https://shiny.john-coene.com/waiter/)
+
+&lt;img src="waiter.png" width="300" height="300" style="display: block; margin: auto;" /&gt;
+
+Ejemplos de [`spinners`](https://shiny.john-coene.com/waiter/)
+
+---
+
+## Esperando: 📦 `shinycssloaders`
+
+[Demo](https://daattali.com/shiny/shinycssloaders-demo/) 
+
+![](demo.gif)
+
+.footnote[[extraído de la página oficial de shinycsloaders](https://github.com/daattali/shinycssloaders)]
+---
+
+# Esperando: 📦 `shinycustomloader`
+
+Ejemplos que incluyen [imagenes predeterminadas, pacmans y nubes de palabras](https://emitanaka.org/shinycustomloader/)
+
+
+&lt;img src="shinycustom.png" width="300" height="300" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+class: center, middle
+
+# Servidor y Reactividad
+
+
+&lt;img src="mamu_2.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+&lt;img src="server_react.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+.pull-left[
+
+**UI**
+
+1. Añadí la plantilla -&gt; ***app.R*** 
+
+1. Selecciona una función de diseño (_layout_) 
+
+1. Selecciona y organiza los inputs 
+
+]
+
+.pull-right[
+
+**Server**
+
+1. Referite a las entradas esperadas usando `input$&lt;id&gt;`
+
+1. Selecciona las funciones `render*()` y `*Output()` adecuadas 
+
+1. Referite a las salidas esperadas usando `output$&lt;id&gt;`
+
+
+
+]
+
+---
+
+# Servidor
+
+&gt; Es en la función del servidor donde utilizarán los valores que los usuarios ingresaron para recrear resultados, obteniendo por ejemplo gráficos, tablas o texto.
+
+--
+
+&gt;Cada salida se guardará en un objeto especial llamado `output` el cual correctamente identificado se podrá referenciar en la UI para ubicarlo en la shiny app.
+ 
+---
+
+## Paso1: Chequear que el código corre de antemano ✅
+
+
+```r
+library(ggplot2)
+
+ggplot(data = mpg)+
+  geom_point(mapping = aes(x = displ,
+                           y = hwy,
+                           color = class))
+```
+
+&lt;img src="latinr_shiny_2020_files/figure-html/plot1-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: center, middle, inverse
+### 🔌 Conecta la elección del usuario con el código en el servidor, y luego el código del servidor con la UI 🤔🤯
+
+
+---
+
+
+
+&lt;img src="reactivity.png" width="90%" style="display: block; margin: auto;" /&gt;
+---
+
+class: center, middle, inverse
+# 🔌 Conecta la elección en pantalla del usuario con el código en el servidor ✅
+
+
+
+---
+## Paso2: Referite a los valores de entrada (*inputs*) usando `input$&lt;id&gt;`
+
+&lt;img src="reactivity3.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+class: center, middle, inverse
+# 🔌 Conecta el código en el servidor con lo que el usuario verá en la pantalla ✅
+
+---
+
+
+
+&lt;img src="reactivity.png" width="90%" style="display: block; margin: auto;" /&gt;
+---
+
+## Paso 3: Elegí las funciones `render*()` y `*Output()` 
+
+Conectan el código del servidor con la salida en pantalla.
+
+&lt;img src="outputs.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Paso 4: Referite a las salidas usando `output$&lt;id&gt;`
+
+Observa las funciones `render*()` y `*Output()` 
+
+&lt;img src="reactivity_plot.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# ¡Completamos la UI!
+
+En este caso, el gráfico se verá dentro del panel general ya que lo ubique dentro de `mainPanel()`.
+
+&lt;img src="slide_mamu3.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+class: inverse, center, middle
+
+# 💻 ¡¡Comparte tu shiny app!
+
+
+---
+
+# ¡Comparte tu shiny app!
+
+**1. shinyapps.io** 
+
+- Gratis hasta 5 apps
+- Debes crearte una cuenta en [shinyapps.io](shinyapps.io)
+- Integrado a la consola de RStudio
+
+--
+
+**2. Binder**
+
+- Apps gratis ilimitadas
+- Solo puedes preinstalar paquetes que estan en CRAN
+- Limitaciones en las versiones de R que puedes usar
+
+[Blog en español ¿Cómo aprender a usar Binder en tu Shiny app?](https://florencia.netlify.app/es-es/2020/08/compartiendo-entornos-interactivos-y-reproducibles-en-r-con-binder.es-es/)
+
+
+---
+
+# ¡Comparte tu shiny app!
+
+
+**3. Arma un paquete 📦**
+
+- Puedes aprender sobre cómo armar un paquete básico en este [libro](https://r-pkgs.org/whole-game.html)
+- Debes generar una función que llame a la app.
+
+--
+
+- No implica necesariamente subirlo a CRAN, pueden instalarlo directamente desde R si lo dejas en un repositorio público como GitHub.
+- Una forma más completa de dejar tu app como 📦 es usar `golem`. Puedes leer más sobre esto aquí: [Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/)
+
+
+&lt;img src="golem.png" width="100" height="100" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+class: inverse, center, middle
+
+### Shiny app para meetup de R-Ladies
+
+Aplicaciones web interactivas con Shiny - [Material para un meetup](  https://florencia.netlify.app/es-es/2020/02/intro_shiny.es-es/)
+https://github.com/flor14/rladies_shiny_meetup_2020.git
+
+&lt;img src="appfinal.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+
+
+---
+
+class: inverse, center, middle
+
+### Shiny app para Taller de Shiny en LatinR 2020
+
+Vilma Romero, Juan Cruz Rodríguez y Florencia D'Andrea
+https://github.com/flor14/latinr_shiny_2020.git
+
+
+&lt;img src="emojiapp.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: center, middle
+
+# Ejemplos
+ 
+[RStudio Shiny Gallery](https://shiny.rstudio.com/gallery/)
+
+[Ganadores del primer concurso de Shiny apps (2019)](https://blog.rstudio.com/2019/04/05/first-shiny-contest-winners/)
+
+[Ganadores del segundo concurso de Shiny Apps (2020)](https://blog.rstudio.com/2020/07/13/winners-of-the-2nd-shiny-contest/)
+
+
+![](https://media.giphy.com/media/X8HbeXDF7nzaM/200w_d.gif)
+
+---
+
+class: center, middle
+
+# Algunos links
+ 
+ [Mastering Shiny](https://mastering-shiny.org/)
+ 
+ [Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/)
+ 
+ [Referencia de funciones de Shiny](https://shiny.rstudio.com/reference/shiny/1.5.0/)
+ 
+ [Shiny's Holy Grail - UseR! 2019 - Joe Cheng  video](https://www.youtube.com/watch?v=5KByRC6eqC8)
+ 
+ [Tutorial R-Studio](https://shiny.rstudio.com/tutorial)
+
+ [Javascript for Shiny Users](https://github.com/rstudio-conf-2020/js-for-shiny)
+
+---
+
+class: center, middle
+
+# ¡Muchas gracias!
+
+![](https://media.giphy.com/media/3oEjHWPTo7c0ajPwty/giphy.gif)
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The Template comes from [Allison Horst](https://remarkjs.com)
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

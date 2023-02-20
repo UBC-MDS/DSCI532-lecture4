@@ -1,0 +1,882 @@
+---
+title: "L4 - How to create a Dash App?"
+institute: "Data Visualization II - DSCI 532 - MDS 2022/23"
+format:
+  revealjs:
+    logo: img/mdslogo.png
+    incremental: true  # bullets one by one 
+    smaller: true
+    scrollable: true
+    theme: custom.scss
+    slide-number: true
+    show-slide-number: print
+    chalkboard: true
+---
+
+## Lecture 4
+
+- How can we create a basic **Dash App**?
+- How a Dash app is different to a Shiny App? (**Comparison**)
+
+
+
+---
+
+## 🙌 Today's goal
+#### Create a Dash-py app
+
+There aren't books 📚 for Dash, but we can check the documentation!
+
+**User interface**
+
+- 🌐 [Dash html components](https://dash.plotly.com/dash-html-components/div)
+
+- 🌐 [Dash core components](https://dash.plotly.com/dash-core-components/dropdown)
+
+  
+---
+
+## 🙌 Today's goal
+#### Comparison Dash and Shiny
+
+- 🌐 [Python Dash vs. R Shiny – Which To Choose in 2021 and Beyond (2020) Dario Raderic ](https://appsilon.com/dash-vs-shiny/)
+
+- 🌐 [Data-Science Reactivity: Three Ways (2022) Ian Lyttle](https://ijlyttle.github.io/reactivity-three-ways-quarto/)
+
+---
+
+## DSCI 532 Overview
+
+![](img/532-overview-2023.png)
+
+
+
+# How can we create a basic **Dash App**? {background-color="#F1FFFA"}
+
+---
+
+## Dash Apps gallery
+
+Some Dash apps from last year (Heroku not working):  
+  
+- [Cherry Blossom tracker](https://github.com/UBC-MDS/cherry_blossom_tracker)  
+  
+- [Netflix Dashboard App](https://github.com/UBC-MDS/netflixpy_dashboard)  
+  
+- [Exploring the cost of living](https://github.com/UBC-MDS/Cost_of_living_py) 
+  
+- [Data Science Salary Dashboard](https://github.com/UBC-MDS/datasci_salaries_py)  
+  
+- [Tsunami Events Dashboard](https://github.com/UBC-MDS/tsunami-events-dashboard-python)    
+- [Olympic Dashboard](https://github.com/UBC-MDS/olympic-dash)
+
+---
+
+## Dash Apps gallery
+
+- [Video Game Sales](https://github.com/UBC-MDS/video_game_sales_dashboard)  
+- [IMBD dashboard](https://github.com/UBC-MDS/imdb_dashboard)  
+- [Mental Health in Tech Dashboard](https://github.com/UBC-MDS/mental_health_in_tech_dashboard)
+- [World Energy Dashboard](https://github.com/UBC-MDS/world-energy-visualization)
+- [Your happy place dashboard](https://github.com/UBC-MDS/your_happy_place)
+- [Olympic Athletes Dashboard](https://github.com/UBC-MDS/Olympic_athletes_dashboard)
+
+---
+
+## Before starting
+#### What platform are we going to use for development?
+1. VS Code
+2. Jupyter Lab
+
+---
+
+
+## Jupyter Lab?
+#### There is a special package called `JupyterDash`
+
+```bash
+pip install jupyter-dash
+```
+The code will look like this:
+
+```python
+from jupyter_dash import JupyterDash
+app = JupyterDash(__name__)
+<your code>
+app.run_server(mode='inline')
+```
+
+**We won't use `JupyterDash` in this course!**
+
+:::footer
+[Example](https://colab.research.google.com/drive/161ZTOzLWd12yNmf6I0c2we9zGOI5mRRZ?usp=sharing) - 
+ ⚠️ Potential [issue](https://github.com/plotly/dash/issues/1
+https://medium.com/plotly/introducing-jupyterdash-811f1f57c02e)
+:::
+
+
+---
+
+## Before starting
+#### What platform are we going to use for development?
+1. VS Code
+2. ~~Jupyter Lab~~
+
+---
+
+## VS Code
+#### Workflow to develop your Dash app
+- Install `532.yml` conda environment and activate it
+- Keep a terminal open to run `python app.py`
+- Open in your command palette `Simple browser: show` and paste the url where dash is running. Click the button `split editor right` to can see the script and the browser at the same time.
+
+```bash
+$ python app.py
+Dash is running on http://127.0.0.1:8050/
+```
+---
+
+## Dash: workflow
+#### hot reloading: update the app when saving it
+
+This feature is activated by default when you run your app with the argument `debug=True`:
+
+```python
+app.run_server(debug=True) 
+```
+---
+
+## Dash 2.8.3 (Feb 2023)
+[Dash version 2.0.0](https://github.com/plotly/dash/releases/tag/v2.0.0) released in Sep 2021 introduced changes in the syntax
+
+
+
+:::: {.columns}
+
+::: {.column width="40%"}
+Before:
+
+```python
+dcc.Dropdown(
+    options=[
+        {'label': 'New York',
+        'value': 'New York'},
+        {'label': 'Montreal',
+        'value': 'Montreal'},
+    ],
+    value='New York'
+)
+```
+:::
+
+::: {.column width="60%"}
+
+After:
+
+```python
+dcc.Dropdown({'NYC': 'New York',
+              'MTL': 'Montreal'},
+              'New York')
+```
+
+:::
+
+::::
+
+
+
+:::footer
+https://community.plotly.com/t/dash-2-1-0-released/60548
+:::
+
+---
+
+### Other changes introduced in Dash 2.0.0
+_be careful when checking examples on internet_
+  
+**Dash 1.x**
+
+```python
+import dash_html_components as html
+import dash_core_components as dcc
+import dash_table
+```
+
+**Dash 2.x**
+
+```python
+from dash import Dash, html, dcc, dash_table
+```
+
+:::footer
+[Changes in Dash v2.0](https://dash.plotly.com/dash-2-0-migration)
+:::
+
+---
+
+
+## Dash app 
+#### Basic structure
+
+```python
+from dash import Dash, html # this changed in Dash v2.0
+app = Dash()
+app.layout = html.Div('I am alive!!')
+app.run_server()
+```
+
+
+---
+
+## `Dash`
+
+* Dash is a Open Source Python library for creating **reactive**, Web-based applications
+* Written on top of `Plotly.js` and `React.js`
+
+---
+
+> While Dash apps are viewed in the web browser, you don’t have to write any Javascript or HTML. Dash provides a Python interface to a rich set of interactive web-based components.
+
+:::footer
+[Introducing Dash](https://medium.com/plotly/introducing-dash-5ecf7191b503)
+:::
+
+---
+
+## Dash user interface
+#### Where is the HTML code?
+
+
+`hmtl.*` -> are HTML elements (~layout functions in shiny)
+
+`dcc.*` -> are the Widgets (~Input functions in shiny)
+
+:::footer
+
+:::
+
+---
+
+
+
+# DEMO: Basic Dash-py app {background-color="#F1FFFA"}
+
+---
+
+
+## Dash User interface (UI)
+
+- 🌐 [Dash html components](https://dash.plotly.com/dash-html-components/div)
+
+- 🌐 [Dash core components](https://dash.plotly.com/dash-core-components/dropdown)
+
+
+---
+
+## Dash UI
+#### Dash HTML and core Components
+
+-  The Dash HTML Components (`dash.html`) module provides classes for all of the HTML tags, and the keyword arguments describe the HTML attributes like style, className, and id.
+
+- The Dash Core Components (`dash.dcc`) module generates higher-level components like controls and graphs.
+
+---
+
+
+## What about the layout?
+
+
+- **Shiny** provides basic layout functions
+
+- **Dash** allows more customization from the start
+
+
+:::footer
+[Dash R has some sample layouts](https://github.com/matthewconnell/dashr_sample_layouts)]
+:::
+
+---
+
+## Shiny and Dash
+#### UI comparison
+
+
+---
+
+### The widgets are similar in Dash and Shiny
+
+
+```{r,echo = FALSE, fig.align='center', out.width='400'}
+knitr::include_graphics("img/inputs.png")
+```
+
+
+---
+
+
+- [Example Shiny app](https://flor.shinyapps.io/equine_numbers_value_canada/)
+- [Example Shiny app repo](https://github.com/UBC-MDS/equine_numbers_value_canada)
+
+---
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/5.png")
+```
+
+---
+
+
+
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/6.png")
+```
+
+---
+
+
+
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/7.png")
+```
+
+---
+
+
+
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/8.png")
+```
+
+---
+
+
+
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/9.png")
+```
+---
+
+## Output
+
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/outputs.png")
+```
+
+---
+
+
+
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/11.png")
+```
+
+---
+
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/12.png")
+```
+
+
+
+# Taking action via Dash callbacks
+
+---
+
+## Taking action via Dash callbacks
+
+- ..."functions that are automatically called by Dash whenever an input component's property changes, in order to update some property in another component (the output)"
+
+:::footer
+[Basic callbacks](https://dash.plotly.com/basic-callbacks)
+:::
+---
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/l2-0.png")
+```
+
+
+---
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/l2-2.png")
+```
+
+- This user interface (**app.layout**) has a a html element (`html.Div`) and a dash core component (`dcc.Input`).  
+  
+- These elements have different names (`widget-1` and `widget-2`)  
+
+---
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/l2-3.png")
+```
+When the user interacts with **widget-1** (`Input`), the function is executed in the server part.
+
+---
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/l2-4.png")
+```
+The output is returned to **widget-2**, defined as `Output`.
+
+---
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/l2-5.png")
+```
+In `@app.callback()` it is defined the reactivity with the functions `Input()` and `Output()`
+
+---
+
+```{r,echo = FALSE, fig.align='center', out.width= 500}
+knitr::include_graphics("img/l2-1.png")
+```
+
+
+
+---
+
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/reactivity-5.png")
+```
+
+
+---
+
+
+```{r,echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/l2-6.png")
+```
+
+The user interface is connected 🔌 with the back-end code
+
+
+
+
+# How a Dash app is different to a Shiny App? (**Comparison**) {background-color="#F1FFFA"}
+
+---
+
+## To understand computations in R, two slogans are helpful:
+
+- Everything that exists is an **object**.
+- Everything that happens is a **function** call.
+
+---
+
+In Dash, everything that exists is **component** and everything that happens is a **callback**
+
+- each component have a number of **properties**
+
+---
+
+## Reactivity
+
+#### In both
+* The inputs/outputs are connected in the server/callback 🔌
+
+---
+
+## Reactivity
+
+#### In Dash
+* Generic functions to connect the UI with the server `Input(<id>)` and `Output(<id>)` 
+* A `component_property` argument should be specified (`value`, `selectData`, `children`, ...)
+
+---
+
+## Reactivity
+
+#### In Shiny 
+*  Specific pair of functions to connect the UI with the server (`plotlyOutput()` and `renderPlotly()`). This means that I don't need to select a `component_property` argument, I should change my pair of functions.
+
+* `input$<inputId>` and `output$<outputId>` in the server creates the links with the UI
+
+---
+
+#### In Dash
+* You can have multiple callbacks
+
+#### In Shiny 
+* You can have mutiple `reactive({})` functions inside the server
+
+:::footer
+[Reactive expressions in Shiny](https://shiny.rstudio.com/tutorial/written-tutorial/lesson6/)
+:::
+---
+
+## Data Science reactivity: three ways
+#### Author thoughts
+
+1 **Shiny is more opinionated than Dash.**  
+Being more opinionated lets you code more concisely. Being less opinionated gives you more flexibility in what you create, at the price of more code.
+
+2. **Shiny manages the reactive graph for you; Dash makes you spell it out explicitly**.
+
+:::footer
+[Appendix C - Stray thoughts - Data science reactivity: three ways](https://ijlyttle.github.io/reactivity-three-ways-quarto/stray-thoughts.html)
+:::
+
+---
+
+## Data Science reactivity: three ways
+#### Author thoughts
+
+3. **Shiny lets you store the state at the server; Dash do not**.
+
+4. **Shiny and Dash both offer a UI/server framework**.
+
+:::footer
+[Appendix C - Stray thoughts - Data science reactivity: three ways](https://ijlyttle.github.io/reactivity-three-ways-quarto/stray-thoughts.html)
+:::
+
+---
+
+### References
+
+* [Dash Documentation](https://dash.plotly.com/introduction)
+
+* [Introducing Dash](https://medium.com/plotly/introducing-dash-5ecf7191b503)
+
+
+---
+
+## Learning outcomes {background-color="#FED9B7"}
+
+1. Debug an app using the traceback
+2. Recognize when is needed to implement a dynamic UI
+3. Tidyevaluation
+
+---
+
+Vocabulary
+
+dashboard
+input
+output
+reactive
+interactive
+HTML
+Javascript
+in production
+UX
+BI
+
+
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+```{r}
+1 + 1
+```
+
+::: footer
+Custom footer text
+:::
+
+---
+
+
+::: {.incremental}
+
+- Eat spaghetti
+- Drink wine
+
+:::
+
+
+---
+
+:::: {.columns}
+
+::: {.column width="40%"}
+contents...
+:::
+
+::: {.column width="60%"}
+contents...
+:::
+
+::::
+
+---
+
+### Hello
+
+. . . 
+
+take it easy
+
+
+---
+
+## Slide Title
+
+- Green ^[A footnote]
+- Brown
+- Purple
+
+::: aside
+Some additional commentary of more peripheral interest.
+:::
+
+---
+
+```{.python code-line-numbers="6-8"}
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
+
+---
+
+Finally, you can highlight different line ranges progressively by separating them with |. For example, here we start by showing all lines, then progress to highlighting line 6, and finally to highlighting line 9:
+
+```{.python code-line-numbers="|6|9"}
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
+
+---
+
+You can use this same option within an executable code cell by using the code-line-numbers cell options:
+
+```{.python}
+#| echo: fenced
+#| code-line-numbers: "|6|9"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
+
+---
+
+# echo 
+
+```{python}
+#| echo: true
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(subplot_kw={"projection": "polar"})
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
+
+--- 
+
+For example, here we display cell output on its own slide:
+
+```{r}
+#| output-location: slide
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+---
+
+
+::: {.panel-tabset}
+
+### Tab A
+
+Content for `Tab A`
+
+### Tab B
+
+Content for `Tab B`
+
+:::
+
+---
+
+## Slide Title {background-color="aquamarine"}
+
+---
+
+## Slide Title {background-color="black" background-image="https://placekitten.com/100/100" background-size="100px" background-repeat="repeat"}
+
+This slide's background image will be sized to 100px and repeated. 
+
+---
+
+
+## {auto-animate=true}
+
+::: {style="margin-top: 100px;"}
+Animating content
+:::
+
+## {auto-animate=true}
+
+::: {style="margin-top: 200px; font-size: 3em; color: red;"}
+Animating content
+:::
+
+---
+
+## Slide Title
+
+Here is an image:
+
+![](img/mdslogo.png){.r-stretch}
+
+Some text after the image.
+
+
+---
+
+![](img/mdslogo.png){.absolute top=200 left=0 width="350" height="300"}
+
+![](img/mdslogo.png){.absolute top=50 right=50 width="450" height="250"}
+
+![](img/mdslogo.png){.absolute bottom=0 right=50 width="300" height="300"}
+---
+
+## {auto-animate="true"}
+
+```r
+# Fill in the spot we created for a plot
+output$phonePlot <- renderPlot({
+  # Render a barplot
+})
+```
+
+## {auto-animate=true}
+
+```r
+# Fill in the spot we created for a plot
+output$phonePlot <- renderPlot({
+  # Render a barplot
+  barplot(WorldPhones[,input$region]*1000, 
+          main=input$region,
+          ylab="Number of Telephones",
+          xlab="Year")
+})
+```
+
+---
+
+Movement Animations
+Animations are not limited to changes in style. Auto-Animate can also be used to automatically move elements into their new position as content is added, removed or rearranged on a slide. All without a single line of inline CSS. For example, here the delta between the content on two slides is implicitly animated:
+
+## {auto-animate=true}
+
+Animation
+
+## {auto-animate=true}
+
+Implicit
+
+Animation
+
+---
+
+Element Matching
+
+
+## {auto-animate=true auto-animate-easing="ease-in-out"}
+
+::: {.r-hstack}
+::: {data-id="box1" auto-animate-delay="0" style="background: #2780e3; width: 200px; height: 150px; margin: 10px;"}
+:::
+
+::: {data-id="box2" auto-animate-delay="0.1" style="background: #3fb618; width: 200px; height: 150px; margin: 10px;"}
+:::
+
+::: {data-id="box3" auto-animate-delay="0.2" style="background: #e83e8c; width: 200px; height: 150px; margin: 10px;"}
+:::
+:::
+
+## {auto-animate=true auto-animate-easing="ease-in-out"}
+
+::: {.r-stack}
+::: {data-id="box1" style="background: #2780e3; width: 350px; height: 350px; border-radius: 200px;"}
+:::
+
+::: {data-id="box2" style="background: #3fb618; width: 250px; height: 250px; border-radius: 200px;"}
+:::
+
+::: {data-id="box3" style="background: #e83e8c; width: 150px; height: 150px; border-radius: 200px;"}
+:::
+:::
+
+---
+
+::: {.fragment}
+Fade in
+:::
+
+::: {.fragment .fade-out}
+Fade out
+:::
+
+::: {.fragment .highlight-red}
+Highlight red
+:::
+
+::: {.fragment .fade-in-then-out}
+Fade in, then out
+:::
+
+::: {.fragment .fade-up}
+Slide up while fading in
+:::
+
+---
+
+Nested fragments
+
+::: {.fragment .fade-in}
+::: {.fragment .highlight-red}
+::: {.fragment .semi-fade-out}
+Fade in > Turn red > Semi fade out
+:::
+:::
+:::
+
+---
+
+
+# The end
