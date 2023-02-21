@@ -538,11 +538,17 @@
 </section>
 <section id="dash-app" class="slide level2">
 <h2>Dash app</h2>
+<h4 id="basic-structure-comparison-with-shiny">Basic structure: comparison with Shiny</h4>
+
+<img data-src="img/shiny+dash2.png" class="r-stretch"></section>
+<section id="dash-app-1" class="slide level2">
+<h2>Dash app</h2>
 <h4 id="basic-structure">Basic structure</h4>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">from</span> dash <span class="im">import</span> Dash, html <span class="co"># this changed in Dash v2.0</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>app <span class="op">=</span> Dash()</span>
-<span id="cb9-3"><a href="#cb9-3"></a>app.layout <span class="op">=</span> html.Div(<span class="st">'I am alive!!'</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a>app.run_server()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">from</span> dash <span class="im">import</span> dash, html <span class="co"># this changed in Dash v2.0</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a>app <span class="op">=</span> Dash()</span>
+<span id="cb9-4"><a href="#cb9-4"></a>app.layout <span class="op">=</span> html.Div(<span class="st">'I am alive!!'</span>)</span>
+<span id="cb9-5"><a href="#cb9-5"></a>app.run_server()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="dash" class="slide level2">
 <h2><code>Dash</code></h2>
@@ -664,10 +670,10 @@
 <p><a href="https://dash.plotly.com/basic-callbacks">Basic callbacks</a></p>
 </div>
 </section>
-<section class="slide level2">
+<section id="dash-example-app" class="slide level2">
+<h2>Dash example app</h2>
 
-
-<img data-src="img/l2-0.png" width="292" class="r-stretch quarto-figure-center"></section>
+<img data-src="img/l2-0.png" width="400" class="r-stretch quarto-figure-center"></section>
 <section class="slide level2">
 
 
@@ -709,6 +715,10 @@
 <h1>How a Dash app is different to a Shiny App? (<strong>Comparison</strong>)</h1>
 
 </section>
+<section id="shiny-and-dash-1" class="slide level2">
+<h2>Shiny and Dash</h2>
+
+<img data-src="img/shiny+dash.png" class="r-stretch"></section>
 <section id="to-understand-computations-in-r-two-slogans-are-helpful" class="slide level2">
 <h2>To understand computations in R, two slogans are helpful:</h2>
 <ul>

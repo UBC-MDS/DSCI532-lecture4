@@ -214,12 +214,20 @@ from dash import Dash, html, dcc, dash_table
 
 ---
 
+## Dash app
+#### Basic structure: comparison with Shiny
+
+![](img/shiny+dash2.png)
+
+---
+
 
 ## Dash app 
 #### Basic structure
 
 ```python
-from dash import Dash, html # this changed in Dash v2.0
+from dash import dash, html # this changed in Dash v2.0
+
 app = Dash()
 app.layout = html.Div('I am alive!!')
 app.run_server()
@@ -398,7 +406,8 @@ knitr::include_graphics("img/12.png")
 :::
 ---
 
-```{r,echo = FALSE, fig.align='center'}
+## Dash example app
+```{r,echo = FALSE, fig.align='center', out.width=400}
 knitr::include_graphics("img/l2-0.png")
 ```
 
@@ -463,6 +472,13 @@ The user interface is connected 🔌 with the back-end code
 
 
 # How a Dash app is different to a Shiny App? (**Comparison**) {background-color="#F1FFFA"}
+
+---
+
+## Shiny and Dash
+
+![](img/shiny+dash.png)
+
 
 ---
 
