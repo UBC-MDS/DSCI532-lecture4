@@ -1,5 +1,5 @@
 ---
-title: "L4 - How to create a Dash App?"
+title: "L4 - Create a Dash python App"
 institute: "Data Visualization II - DSCI 532 - MDS 2022/23"
 format:
   revealjs:
@@ -286,7 +286,7 @@ https://community.plotly.com/t/dash-2-1-0-released/60548
 
 ---
 
-### Other changes introduced in Dash 2.0.0 (2021)
+### Changes introduced in Dash 2.0.0 (2021)
 _be careful with the examples you find online_
   
 **Dash 1.x**
@@ -364,13 +364,13 @@ https://dash-bootstrap-components.opensource.faculty.ai/docs/quickstart/
 ---
 
 ## Dash UI
-#### Multi-page app navbar
+#### Multi-page app (navbar)
 
 `Dash 2.5.*`: *Dash Pages* implements features to simplify creating a multi-page app, handling URL routing and offering an easy way to structure and define the pages in your app.
 
 - 📹 [Create Multipage Web App with Dash Pages](https://www.youtube.com/watch?v=pJMZ0r84Rqs)
 
-- [navbar code]()
+- [navbar code](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/navbar/)
 
 :::footer
 Extracted from [this web.](https://community.plotly.com/t/dash-2-5-released-easier-multi-page-apps-component-properties/64925)
@@ -382,13 +382,16 @@ Extracted from [this web.](https://community.plotly.com/t/dash-2-5-released-easi
 ## Dash UI
 #### Multi-page app with Dash Pages:
 
-1 . Create individual `.py` files for each page in your app, and put them in a /pages directory.  
+1 . Create individual `.py` files for each page in your app, and put them in a `/pages` directory.  
   
 2. In each of these page files:
    - Add a `dash.register_page(__name__)`, which tells Dash that this is a page in your app.
    - Define the page’s content within a variable or function called `layout`.
    
-   
+:::footer
+Extracted from [this web.](https://community.plotly.com/t/dash-2-5-released-easier-multi-page-apps-component-properties/64925)
+:::
+
 ---
 
 ## Dash UI
@@ -750,6 +753,8 @@ The user interface is connected 🔌 with the back-end code
 
 # DEMO: Dash-py app with a reactive plot {background-color="#F1FFFA"}
 _plot-app.py_
+
+
 
 # How a Dash app is different to a Shiny App? (**Comparison**) {background-color="#F1FFFA"}
 

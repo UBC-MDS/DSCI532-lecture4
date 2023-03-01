@@ -9,7 +9,7 @@
 <link href="532-lecture4_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.335">
 
-  <title>L4 - How to create a Dash App?</title>
+  <title>L4 - Create a Dash python App</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -390,7 +390,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">L4 - How to create a Dash App?</h1>
+  <h1 class="title">L4 - Create a Dash python App</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -609,7 +609,7 @@
 </section>
 <section class="slide level2">
 
-<h3 id="other-changes-introduced-in-dash-2.0.0-2021">Other changes introduced in Dash 2.0.0 (2021)</h3>
+<h3 id="changes-introduced-in-dash-2.0.0-2021">Changes introduced in Dash 2.0.0 (2021)</h3>
 <p><em>be careful with the examples you find online</em></p>
 <p><strong>Dash 1.x</strong></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> dash_html_components <span class="im">as</span> html</span>
@@ -661,11 +661,11 @@
 </section>
 <section id="dash-ui-4" class="slide level2">
 <h2>Dash UI</h2>
-<h4 id="multi-page-app-navbar">Multi-page app navbar</h4>
+<h4 id="multi-page-app-navbar">Multi-page app (navbar)</h4>
 <p><code>Dash 2.5.*</code>: <em>Dash Pages</em> implements features to simplify creating a multi-page app, handling URL routing and offering an easy way to structure and define the pages in your app.</p>
 <ul>
 <li class="fragment"><p>📹 <a href="https://www.youtube.com/watch?v=pJMZ0r84Rqs">Create Multipage Web App with Dash Pages</a></p></li>
-<li class="fragment"><p><a href="">navbar code</a></p></li>
+<li class="fragment"><p><a href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/navbar/">navbar code</a></p></li>
 </ul>
 <div class="footer">
 <p>Extracted from <a href="https://community.plotly.com/t/dash-2-5-released-easier-multi-page-apps-component-properties/64925">this web.</a></p>
@@ -674,7 +674,7 @@
 <section id="dash-ui-5" class="slide level2">
 <h2>Dash UI</h2>
 <h4 id="multi-page-app-with-dash-pages">Multi-page app with Dash Pages:</h4>
-<p>1 . Create individual <code>.py</code> files for each page in your app, and put them in a /pages directory.</p>
+<p>1 . Create individual <code>.py</code> files for each page in your app, and put them in a <code>/pages</code> directory.</p>
 <ol start="2" type="1">
 <li class="fragment">In each of these page files:
 <ul>
@@ -682,6 +682,9 @@
 <li class="fragment">Define the page’s content within a variable or function called <code>layout</code>.</li>
 </ul></li>
 </ol>
+<div class="footer">
+<p>Extracted from <a href="https://community.plotly.com/t/dash-2-5-released-easier-multi-page-apps-component-properties/64925">this web.</a></p>
+</div>
 </section>
 <section id="dash-ui-6" class="slide level2">
 <h2>Dash UI</h2>
