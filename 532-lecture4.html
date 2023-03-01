@@ -416,18 +416,19 @@
 <ul>
 <li class="fragment"><p>🌐 <a href="https://dash.plotly.com/dash-html-components/">Dash html components</a></p></li>
 <li class="fragment"><p>🌐 <a href="https://dash.plotly.com/dash-core-components/">Dash core components</a></p></li>
+<li class="fragment"><p>🌐 <a href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/"><code>dash-bootstrap-components</code> documentation</a></p></li>
 </ul>
 <p><strong>Server</strong></p>
 <ul>
-<li class="fragment"><p>🌐 <a href="https://dash.plotly.com/basic-callbacks">Basic Dash callbacks</a></p></li>
-<li class="fragment"><p>🌐 <a href="https://dash.plotly.com/sharing-data-between-callbacks">Sharing data between callbacks</a> - <em>equivalent to Shiny’s <code>reactive({})</code>. Read <a href="https://github.com/plotly/dash/issues/49">this thread</a></em></p></li>
+<li class="fragment">🌐 <a href="https://dash.plotly.com/basic-callbacks">Basic Dash callbacks</a></li>
 </ul>
 </section>
 <section id="todays-goal-2" class="slide level2">
 <h2>🙌 Today’s goal</h2>
 <h4 id="create-a-dash-py-app-2">Create a Dash-py app</h4>
 <ul>
-<li class="fragment">🌐 <a href="https://dash.plotly.com/datatable">Datatable documentation</a></li>
+<li class="fragment"><p>🌐 <a href="https://dash.plotly.com/datatable">Datatable documentation</a></p></li>
+<li class="fragment"><p>🎥 <a href="https://www.youtube.com/c/charmingdata">Charming Data - Youtube channel</a></p></li>
 </ul>
 </section>
 <section id="todays-goal-3" class="slide level2">
@@ -476,26 +477,61 @@
 <li class="fragment"><a href="https://dash.gallery/Portal/">Dash Gallery</a></li>
 </ul>
 </section>
+<section id="dash" class="slide level2">
+<h2><code>Dash</code></h2>
+<ul>
+<li class="fragment">Dash is a Open Source Python library for creating <strong>reactive</strong>, Web-based applications</li>
+<li class="fragment">Dash applications are web servers running Flask and communicating JSON packets over HTTP requests. Dash’s frontend renders components using React.js.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<blockquote>
+<p>While Dash apps are viewed in the web browser, you don’t have to write any Javascript or HTML. Dash provides a Python interface to a rich set of interactive web-based components.</p>
+</blockquote>
+<div class="footer">
+<p><a href="https://medium.com/plotly/introducing-dash-5ecf7191b503">Introducing Dash</a></p>
+</div>
+</section>
+<section id="dash-app" class="slide level2">
+<h2>Dash app</h2>
+<h4 id="basic-structure">Basic structure</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> dash <span class="im">import</span> dash, html</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a>app.layout <span class="op">=</span> html.Div(<span class="st">'I am alive!!'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    app.run_server(debug<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dash-app-1" class="slide level2">
+<h2>Dash app</h2>
+<h4 id="basic-structure-comparison-with-shiny">Basic structure: comparison with Shiny</h4>
+
+<img data-src="img/shiny+dash2.png" class="r-stretch"></section>
 <section id="before-starting" class="slide level2">
 <h2>Before starting</h2>
 <h4 id="what-platform-are-we-going-to-use-for-development">What platform are we going to use for development?</h4>
 <ol type="1">
-<li class="fragment">VS Code</li>
+<li class="fragment">VS Code<br>
+</li>
 <li class="fragment">Jupyter Lab</li>
 </ol>
 </section>
 <section id="jupyter-lab" class="slide level2">
 <h2>Jupyter Lab?</h2>
 <h4 id="there-is-a-special-package-called-jupyterdash">There is a special package called <code>JupyterDash</code></h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">pip</span> install jupyter-dash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">pip</span> install jupyter-dash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The code will look like this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> jupyter_dash <span class="im">import</span> JupyterDash</span>
-<span id="cb2-2"><a href="#cb2-2"></a>app <span class="op">=</span> JupyterDash(<span class="va">__name__</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="op">&lt;</span>your code<span class="op">&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>app.run_server(mode<span class="op">=</span><span class="st">'inline'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> jupyter_dash <span class="im">import</span> JupyterDash</span>
+<span id="cb3-2"><a href="#cb3-2"></a>app <span class="op">=</span> JupyterDash(<span class="va">__name__</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="op">&lt;</span>your code<span class="op">&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>app.run_server(mode<span class="op">=</span><span class="st">'inline'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>We won’t use <code>JupyterDash</code> in this course!</strong></p>
 <div class="footer">
-<p><a href="https://colab.research.google.com/drive/161ZTOzLWd12yNmf6I0c2we9zGOI5mRRZ?usp=sharing">Example</a> - ⚠️ Potential <a href="https://github.com/plotly/dash/issues/1%20https://medium.com/plotly/introducing-jupyterdash-811f1f57c02e">issue</a></p>
+<p><a href="https://colab.research.google.com/drive/161ZTOzLWd12yNmf6I0c2we9zGOI5mRRZ?usp=sharing">Example</a></p>
 </div>
 </section></section>
 <section>
@@ -514,27 +550,36 @@
 <h2>VS Code</h2>
 <h4 id="workflow-to-develop-your-dash-app">Workflow to develop your Dash app</h4>
 <ol type="1">
-<li class="fragment">Install <code>532.yml</code> conda environment and activate it:</li>
+<li class="fragment">Install <code>dataviz-532.yml</code> conda environment and activate it:</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> 532.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> dataviz-532.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
-<li class="fragment">Keep a terminal open to run <code>python app.py</code></li>
+<li class="fragment">Run <code>python app.py</code></li>
 </ol>
 </section>
 <section id="vs-code-1" class="slide level2">
 <h2>VS Code</h2>
 <h4 id="workflow-to-develop-your-dash-app-1">Workflow to develop your Dash app</h4>
 <ol start="3" type="1">
-<li class="fragment">Open in your command palette <code>Simple browser: show</code> and paste there the url where dash is running. Click the button <code>split editor right</code> to see the script and the browser at the same time.</li>
+<li class="fragment">Open <em>command palette</em> -&gt; <code>Simple browser: show</code>.
+<ul>
+<li class="fragment">Paste there the url where dash is running.</li>
+<li class="fragment">Click the button <code>split editor right</code> if you want to see the script and the browser in the screen at the same time.</li>
+</ul></li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">$</span> python app.py</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="ex">Dash</span> is running on http://127.0.0.1:8050/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">$</span> python app.py</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">Dash</span> is running on http://127.0.0.1:8050/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="dash-workflow" class="slide level2">
 <h2>Dash: workflow</h2>
 <h4 id="hot-reloading-update-the-app-when-saving-it">hot reloading: update the app when saving it</h4>
 <p>This feature is activated by default when you run your app with the argument <code>debug=True</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>app.run_server(debug<span class="op">=</span><span class="va">True</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>app.run_server(debug<span class="op">=</span><span class="va">True</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="demo-workflow-and-basic-structure" class="title-slide slide level1 center" data-background-color="#F1FFFA">
+<h1>DEMO: workflow and basic structure</h1>
+<p><em>basic-app.py</em></p>
 </section>
 <section id="dash-2.8.3-feb-2023" class="slide level2">
 <h2>Dash 2.8.3 (Feb 2023)</h2>
@@ -542,20 +587,20 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p>Before:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>dcc.Dropdown(</span>
-<span id="cb6-2"><a href="#cb6-2"></a>    options<span class="op">=</span>[</span>
-<span id="cb6-3"><a href="#cb6-3"></a>        {<span class="st">'label'</span>: <span class="st">'New York'</span>,</span>
-<span id="cb6-4"><a href="#cb6-4"></a>        <span class="st">'value'</span>: <span class="st">'New York'</span>},</span>
-<span id="cb6-5"><a href="#cb6-5"></a>        {<span class="st">'label'</span>: <span class="st">'Montreal'</span>,</span>
-<span id="cb6-6"><a href="#cb6-6"></a>        <span class="st">'value'</span>: <span class="st">'Montreal'</span>},</span>
-<span id="cb6-7"><a href="#cb6-7"></a>    ],</span>
-<span id="cb6-8"><a href="#cb6-8"></a>    value<span class="op">=</span><span class="st">'New York'</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>dcc.Dropdown(</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    options<span class="op">=</span>[</span>
+<span id="cb7-3"><a href="#cb7-3"></a>        {<span class="st">'label'</span>: <span class="st">'New York'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>        <span class="st">'value'</span>: <span class="st">'New York'</span>},</span>
+<span id="cb7-5"><a href="#cb7-5"></a>        {<span class="st">'label'</span>: <span class="st">'Montreal'</span>,</span>
+<span id="cb7-6"><a href="#cb7-6"></a>        <span class="st">'value'</span>: <span class="st">'Montreal'</span>},</span>
+<span id="cb7-7"><a href="#cb7-7"></a>    ],</span>
+<span id="cb7-8"><a href="#cb7-8"></a>    value<span class="op">=</span><span class="st">'New York'</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <p>After:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>dcc.Dropdown({<span class="st">'NYC'</span>: <span class="st">'New York'</span>,</span>
-<span id="cb7-2"><a href="#cb7-2"></a>              <span class="st">'MTL'</span>: <span class="st">'Montreal'</span>},</span>
-<span id="cb7-3"><a href="#cb7-3"></a>              <span class="st">'New York'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>dcc.Dropdown({<span class="st">'NYC'</span>: <span class="st">'New York'</span>,</span>
+<span id="cb8-2"><a href="#cb8-2"></a>              <span class="st">'MTL'</span>: <span class="st">'Montreal'</span>},</span>
+<span id="cb8-3"><a href="#cb8-3"></a>              <span class="st">'New York'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="footer">
@@ -564,14 +609,14 @@
 </section>
 <section class="slide level2">
 
-<h3 id="other-changes-introduced-in-dash-2.0.0">Other changes introduced in Dash 2.0.0</h3>
-<p><em>be careful when the examples you can find online</em></p>
+<h3 id="other-changes-introduced-in-dash-2.0.0-2021">Other changes introduced in Dash 2.0.0 (2021)</h3>
+<p><em>be careful with the examples you find online</em></p>
 <p><strong>Dash 1.x</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> dash_html_components <span class="im">as</span> html</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="im">import</span> dash_core_components <span class="im">as</span> dcc</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="im">import</span> dash_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> dash_html_components <span class="im">as</span> html</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="im">import</span> dash_core_components <span class="im">as</span> dcc</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="im">import</span> dash_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Dash 2.x</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">from</span> dash <span class="im">import</span> Dash, html, dcc, dash_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">from</span> dash <span class="im">import</span> dash, html, dcc, dash_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="footer">
 <p><a href="https://dash.plotly.com/dash-2-0-migration">Changes in Dash v2.0</a></p>
 </div>
@@ -581,52 +626,18 @@
 <h1>How can we create a basic <strong>Dash App</strong>?</h1>
 
 </section>
-<section id="dash" class="slide level2">
-<h2><code>Dash</code></h2>
-<ul>
-<li class="fragment">Dash is a Open Source Python library for creating <strong>reactive</strong>, Web-based applications</li>
-<li class="fragment">Written on top of <code>Plotly.js</code> and <code>React.js</code></li>
-</ul>
-</section>
-<section class="slide level2">
-
-<blockquote>
-<p>While Dash apps are viewed in the web browser, you don’t have to write any Javascript or HTML. Dash provides a Python interface to a rich set of interactive web-based components.</p>
-</blockquote>
-<div class="footer">
-<p><a href="https://medium.com/plotly/introducing-dash-5ecf7191b503">Introducing Dash</a></p>
-</div>
-</section>
-<section id="dash-app" class="slide level2">
-<h2>Dash app</h2>
-<h4 id="basic-structure">Basic structure</h4>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">from</span> dash <span class="im">import</span> dash, html</span>
-<span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>)</span>
-<span id="cb10-5"><a href="#cb10-5"></a></span>
-<span id="cb10-6"><a href="#cb10-6"></a>app.layout <span class="op">=</span> html.Div(<span class="st">'I am alive!!'</span>)</span>
-<span id="cb10-7"><a href="#cb10-7"></a></span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
-<span id="cb10-9"><a href="#cb10-9"></a>    app.run_server(debug<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="dash-app-1" class="slide level2">
-<h2>Dash app</h2>
-<h4 id="basic-structure-comparison-with-shiny">Basic structure: comparison with Shiny</h4>
-
-<img data-src="img/shiny+dash2.png" class="r-stretch"></section>
 <section id="dash-ui" class="slide level2">
 <h2>Dash UI</h2>
 <h4 id="where-is-the-html-code">Where is the HTML code?</h4>
-<p><code>html.*</code> (and <code>dbc.*</code>) -&gt; (~<strong>layout functions</strong> in Shiny)</p>
-<p><code>dcc.*</code> -&gt; are the Widgets (~<strong>Input functions</strong> in Shiny)</p>
+<p><code>html.*</code> (and <code>dbc.*</code>) -&gt; (~<strong>Layout functions</strong> in Shiny)</p>
+<p><code>dcc.*</code> -&gt; the Widgets (~<strong>Input functions</strong> in Shiny)</p>
 </section>
 <section id="dash-ui-1" class="slide level2">
 <h2>Dash UI</h2>
 <h4 id="html.">🌐 <a href="https://dash.plotly.com/dash-html-components/">1. <code>html.*</code></a></h4>
 <p>The <strong>Dash HTML Components</strong> (<code>dash.html</code>) module provides classes for all of the HTML tags, and the keyword arguments describe the HTML attributes like style, className, and id.</p>
 <div class="footer">
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">Mozilla webpage</a> - <a href="https://dash.plotly.com/dash-html-components/div"><code>html.Div</code> component as example</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Mozilla webpage - Div element</a> - <a href="https://dash.plotly.com/dash-html-components/div"><code>html.Div</code> component as example</a></p>
 </div>
 </section>
 <section id="dash-ui-2" class="slide level2">
@@ -640,7 +651,7 @@
 <section id="dash-ui-3" class="slide level2">
 <h2>Dash UI</h2>
 <h4 id="dbc.">🌐 <a href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">3. <code>dbc.*</code></a></h4>
-<p><strong>You can add themes, inputs and layout functions with this library</strong></p>
+<p><strong>You can add themes and layout functions with <code>dash_bootstrap_components</code> library</strong></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> dash_bootstrap_components <span class="im">as</span> dbc</span>
 <span id="cb11-2"><a href="#cb11-2"></a></span>
 <span id="cb11-3"><a href="#cb11-3"></a>app <span class="op">=</span> dash.Dash(external_stylesheets<span class="op">=</span>[dbc.themes.BOOTSTRAP])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -650,12 +661,73 @@
 </section>
 <section id="dash-ui-4" class="slide level2">
 <h2>Dash UI</h2>
+<h4 id="multi-page-app-navbar">Multi-page app navbar</h4>
+<p><code>Dash 2.5.*</code>: <em>Dash Pages</em> implements features to simplify creating a multi-page app, handling URL routing and offering an easy way to structure and define the pages in your app.</p>
+<ul>
+<li class="fragment"><p>📹 <a href="https://www.youtube.com/watch?v=pJMZ0r84Rqs">Create Multipage Web App with Dash Pages</a></p></li>
+<li class="fragment"><p><a href="">navbar code</a></p></li>
+</ul>
+<div class="footer">
+<p>Extracted from <a href="https://community.plotly.com/t/dash-2-5-released-easier-multi-page-apps-component-properties/64925">this web.</a></p>
+</div>
+</section>
+<section id="dash-ui-5" class="slide level2">
+<h2>Dash UI</h2>
+<h4 id="multi-page-app-with-dash-pages">Multi-page app with Dash Pages:</h4>
+<p>1 . Create individual <code>.py</code> files for each page in your app, and put them in a /pages directory.</p>
+<ol start="2" type="1">
+<li class="fragment">In each of these page files:
+<ul>
+<li class="fragment">Add a <code>dash.register_page(__name__)</code>, which tells Dash that this is a page in your app.</li>
+<li class="fragment">Define the page’s content within a variable or function called <code>layout</code>.</li>
+</ul></li>
+</ol>
+</section>
+<section id="dash-ui-6" class="slide level2">
+<h2>Dash UI</h2>
+<h4 id="multi-page-app-with-dash-pages-1">Multi-page app with Dash Pages:</h4>
+<ol start="3" type="1">
+<li class="fragment">In your main app file, <code>app.py</code>:
+<ul>
+<li class="fragment">When declaring your app, set <code>use_pages</code> to <code>True</code>: <code>app = Dash(__name__, use_pages=True)</code></li>
+<li class="fragment">Add <code>dash.page_container</code> in your app’s layout where you want the content of the pages to be displayed for when the user visits one of the app’s page paths.</li>
+</ul></li>
+</ol>
+<div class="footer">
+<p>Extracted from <a href="https://community.plotly.com/t/dash-2-5-released-easier-multi-page-apps-component-properties/64925">this web.</a></p>
+</div>
+</section>
+<section id="dash-ui-7" class="slide level2">
+<h2>Dash UI</h2>
+<h4 id="single-page-layout-a-sidebar">Single-page layout: a sidebar</h4>
+<ul>
+<li class="fragment"><a href="https://dash-bootstrap-components.opensource.faculty.ai/examples/simple-sidebar/">Sidebar</a></li>
+</ul>
+<div class="footer">
+<p><a href="https://getbootstrap.com/docs/5.0/content/typography/"><code>className</code> argument customization</a></p>
+</div>
+</section></section>
+<section>
+<section id="demo-sidebar-and-dropdown-menu" class="title-slide slide level1 center" data-background-color="#F1FFFA">
+<h1>DEMO: Sidebar and dropdown menu</h1>
+<p><em>sidebar-example.py</em></p>
+</section>
+<section id="dash-ui-8" class="slide level2">
+<h2>Dash UI</h2>
 <h4 id="themes-css-or-dbc.">Themes: <code>CSS</code> or <code>dbc.*</code></h4>
-<p><strong>Option 1</strong> - Using a <code>CSS</code> file <em>Note: Maybe your company will have a CSS file with their custom style</em></p>
+<p><strong>Option 1</strong> - Using a <code>CSS</code> file</p>
+<p><em>Note: Your company may have a CSS file with their custom style</em></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">from</span> dash <span class="im">import</span> dash, html</span>
 <span id="cb12-2"><a href="#cb12-2"></a></span>
 <span id="cb12-3"><a href="#cb12-3"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>, external_stylesheets<span class="op">=</span>[<span class="st">'https://codepen.io/chriddyp/pen/bWLwgP.css'</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>–</p>
+<div class="footer">
+<p>If you have a .css file you should locate it in a folder called <code>assert</code></p>
+</div>
+</section>
+<section id="dash-ui-9" class="slide level2">
+<h2>Dash UI</h2>
+<h4 id="themes-css-or-dbc.-1">Themes: <code>CSS</code> or <code>dbc.*</code></h4>
+<p><strong>Option 1</strong> - Using a <code>CSS</code> file</p>
 <p>You can also style individual HTML components:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>app.layout <span class="op">=</span> html.Div([</span>
 <span id="cb13-2"><a href="#cb13-2"></a>       html.H1(<span class="st">'Hello!'</span>, style <span class="op">=</span> {<span class="st">'background-color'</span>:<span class="st">'red'</span>} ])</span>
@@ -673,9 +745,11 @@
 <span id="cb14-2"><a href="#cb14-2"></a>  tags<span class="sc">$</span><span class="fu">head</span>(</span>
 <span id="cb14-3"><a href="#cb14-3"></a>    tags<span class="sc">$</span><span class="fu">link</span>(<span class="at">rel =</span> <span class="st">"stylesheet"</span>, <span class="at">type =</span> <span class="st">"text/css"</span>, <span class="at">href =</span> <span class="st">"dark_mode.css"</span>)</span>
 <span id="cb14-4"><a href="#cb14-4"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>and</p>
+<div class="footer">
+<p>Open the link to see all the available ways to do this in Shiny</p>
+</div>
 </section>
-<section id="dash-ui-5" class="slide level2">
+<section id="dash-ui-10" class="slide level2">
 <h2>Dash UI</h2>
 <h4 id="adding-a-theme-to-your-app">Adding a Theme to your app</h4>
 <p><strong>Option 2</strong> - Using <code>dash_bootstrap_components</code></p>
@@ -688,7 +762,7 @@
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">Mozilla webpage</a> - <a href="https://bootswatch.com/"><code>Bootswatch</code> themes</a></p>
 </div>
 </section>
-<section id="dash-ui-6" class="slide level2">
+<section id="dash-ui-11" class="slide level2">
 <h2>Dash UI</h2>
 <h4 id="adding-a-theme-to-your-app-1">Adding a Theme to your app</h4>
 <p><strong>Option 2</strong> - Using <code>dash_bootstrap_components</code></p>
@@ -713,8 +787,16 @@
 <section class="slide level2">
 
 <h3 id="layout-components">Layout components</h3>
-<p>There are three main layout components in <code>dash-bootstrap-components</code>: * Container <code>dbc.Container()</code><br>
-* Row <code>dbc.Row()</code> * Col <code>dbc.Col()</code></p>
+<p>There are three main layout components in <code>dash-bootstrap-components</code>:</p>
+<ul>
+<li class="fragment">Container <code>dbc.Container()</code>
+<ul>
+<li class="fragment">Row <code>dbc.Row()</code>
+<ul>
+<li class="fragment">Col <code>dbc.Col()</code></li>
+</ul></li>
+</ul></li>
+</ul>
 <div class="footer">
 <p><a href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/"><code>dash-bootstrap-components</code> documentation</a></p>
 </div>
@@ -722,7 +804,7 @@
 <section class="slide level2">
 
 <h3 id="boostrap-grid-system">Boostrap grid system</h3>
-<p>The Bootstrap grid has <strong>twelve columns</strong>, and <a href="https://getbootstrap.com/docs/5.1/layout/grid/#grid-options">six responsive tiers</a> (allowing you to specify different behaviors on different screen sizes)</p>
+<p>The Bootstrap grid has <strong>twelve columns</strong>, and <a href="https://getbootstrap.com/docs/5.1/layout/grid/#grid-options">six responsive tiers</a> .</p>
 
 <img data-src="img/boostrap.png" width="400" class="r-stretch quarto-figure-center"><div class="footer">
 <p><a href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/"><code>dash-bootstrap-components</code> documentation</a> / <a href="https://www.youtube.com/watch?v=0mfIK8zxUds">Video Charming data</a></p>
@@ -742,28 +824,30 @@
 
 <img data-src="img/boostrap.png" width="339" class="r-stretch"></section></section>
 <section>
-<section id="demo-basic-dash-py-app-ui" class="title-slide slide level1 center" data-background-color="#F1FFFA">
-<h1>DEMO: Basic Dash-py app + UI</h1>
-
+<section id="demo-theme-and-bootstrap-components" class="title-slide slide level1 center" data-background-color="#F1FFFA">
+<h1>DEMO: Theme and bootstrap components</h1>
+<p><em>layout-example.py</em></p>
 </section>
-<section id="where-to-start" class="slide level2">
-<h2>Where to start?</h2>
-<h4 id="select-a-widget">Select a widget</h4>
-<p><strong>Dash Documentation</strong> - <a href="https://hellodash.pythonanywhere.com/theme_explorer">Dash Bootstrap Theme Explorer</a> - <a href="https://dash-bootstrap-components.opensource.faculty.ai">dash-bootstrap-components documentation</a> - <a href="https://hackerthemes.com/bootstrap-cheatsheet/">Boostrap cheatsheet</a></p>
-</section>
-<section id="dbc.cards" class="slide level2">
-<h2><code>dbc.Cards</code></h2>
+<section id="dash-ui-12" class="slide level2">
+<h2>Dash UI</h2>
+<h4 id="dbc.cards"><code>dbc.Cards()</code></h4>
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a> dbc.Card([</span>
 <span id="cb17-2"><a href="#cb17-2"></a>          dbc.CardHeader(<span class="st">'Variable distribution'</span>),</span>
 <span id="cb17-3"><a href="#cb17-3"></a>          dbc.CardBody(html.Iframe(</span>
 <span id="cb17-4"><a href="#cb17-4"></a>                       <span class="bu">id</span><span class="op">=</span><span class="st">'histogram'</span>,</span>
-<span id="cb17-5"><a href="#cb17-5"></a>                       style<span class="op">=</span>{<span class="st">'border-width'</span>: <span class="st">'0'</span>, <span class="st">'width'</span>: <span class="st">'100%'</span>, <span class="st">'height'</span>: <span class="st">'400px'</span>}))</span>
-<span id="cb17-6"><a href="#cb17-6"></a>          ])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-5"><a href="#cb17-5"></a>                       style<span class="op">=</span>{<span class="st">'border-width'</span>: <span class="st">'0'</span>,</span>
+<span id="cb17-6"><a href="#cb17-6"></a>                       <span class="st">'width'</span>: <span class="st">'100%'</span>, </span>
+<span id="cb17-7"><a href="#cb17-7"></a>                       <span class="st">'height'</span>: <span class="st">'400px'</span>}))</span>
+<span id="cb17-8"><a href="#cb17-8"></a>          ])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you want the plots in different cards you will have to split them in 2 callbacks!</p>
 </section></section>
 <section id="extra---dash-layout" class="title-slide slide level1 center">
 <h1>Extra - Dash layout</h1>
 <p>Read lecture notes and documentation</p>
+<ul>
+<li class="fragment"><p><a href="https://dash-bootstrap-components.opensource.faculty.ai">dash-bootstrap-components documentation</a></p></li>
+<li class="fragment"><p><a href="https://getbootstrap.com/docs/5.0/examples/cheatsheet/">Bootstrap cheatsheet</a></p></li>
+</ul>
 </section>
 
 <section>
@@ -821,6 +905,11 @@
 <div class="footer">
 <p><a href="https://dash.plotly.com/component-properties">Dash Component properties</a></p>
 </div>
+</section></section>
+<section>
+<section id="demo-basic-callback" class="title-slide slide level1 center" data-background-color="#F1FFFA">
+<h1>DEMO: Basic callback</h1>
+<p><em>simple-callback.py</em></p>
 </section>
 <section id="dash-example-app" class="slide level2">
 <h2>Dash example app</h2>
@@ -861,10 +950,12 @@
 
 
 <img data-src="img/l2-6.png" width="600" class="r-stretch quarto-figure-center"><p>The user interface is connected 🔌 with the back-end code</p>
-</section>
-<section class="slide level2">
-
 </section></section>
+<section id="demo-dash-py-app-with-a-reactive-plot" class="title-slide slide level1 center" data-background-color="#F1FFFA">
+<h1>DEMO: Dash-py app with a reactive plot</h1>
+<p><em>plot-app.py</em></p>
+</section>
+
 <section>
 <section id="how-a-dash-app-is-different-to-a-shiny-app-comparison" class="title-slide slide level1 center" data-background-color="#F1FFFA">
 <h1>How a Dash app is different to a Shiny App? (<strong>Comparison</strong>)</h1>
@@ -896,20 +987,6 @@
 <li class="fragment"><p>Specific pair of functions to connect the UI with the server (<code>plotlyOutput()</code> and <code>renderPlotly()</code>). This means that I don’t need to select a <code>component_property</code> argument, I should change my pair of functions.</p></li>
 <li class="fragment"><p><code>input$&lt;inputId&gt;</code> and <code>output$&lt;outputId&gt;</code> in the server creates the links with the UI</p></li>
 </ul>
-</section>
-<section class="slide level2">
-
-<h4 id="in-dash-1">In Dash</h4>
-<ul>
-<li class="fragment">If you can</li>
-</ul>
-<h4 id="in-shiny-1">In Shiny</h4>
-<ul>
-<li class="fragment">You can have multiple <code>reactive({})</code> functions inside the server</li>
-</ul>
-<div class="footer">
-<p><a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson6/">Reactive expressions in Shiny</a></p>
-</div>
 </section>
 <section id="data-science-reactivity-three-ways" class="slide level2">
 <h2>Data Science reactivity: three ways</h2>
@@ -945,11 +1022,11 @@ Being more opinionated lets you code more concisely. Being less opinionated give
 <section id="learning-outcomes" class="slide level2" data-background-color="#FED9B7">
 <h2>Learning outcomes</h2>
 <ol type="1">
-<li class="fragment">Identify how a Dash app is designed conceptually</li>
-<li class="fragment">Run a Dash app on a local server</li>
-<li class="fragment">Create the Dash app user interface with html and widgets (dropdowns, sliders, etc)</li>
-<li class="fragment">Include an Altair plot in dash</li>
-<li class="fragment">Control an Altair plot via widgets</li>
+<li class="fragment">Identify <strong>how a Dash app is designed</strong> conceptually</li>
+<li class="fragment"><strong>Run a Dash app</strong> on a local server</li>
+<li class="fragment"><strong>Create the Dash app user interface</strong> with html and widgets (dropdowns, sliders, etc)</li>
+<li class="fragment"><strong>Include an Altair plot</strong> in dash</li>
+<li class="fragment"><strong>Control an Altair plot</strong> via widgets</li>
 </ol>
 </section>
 <section class="slide level2">

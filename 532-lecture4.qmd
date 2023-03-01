@@ -40,11 +40,13 @@ There aren't books 📚 for Dash, but we have the documentation (and lecture not
 
 - 🌐 [Dash core components](https://dash.plotly.com/dash-core-components/)
 
+- 🌐 [`dash-bootstrap-components` documentation](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/)
+
 **Server**
 
 - 🌐 [Basic Dash callbacks](https://dash.plotly.com/basic-callbacks)
 
-- 🌐 [Sharing data between callbacks](https://dash.plotly.com/sharing-data-between-callbacks) - *equivalent to Shiny's `reactive({})`. Read [this thread](https://github.com/plotly/dash/issues/49)*
+
 
 ---
 
@@ -52,6 +54,8 @@ There aren't books 📚 for Dash, but we have the documentation (and lecture not
 #### Create a Dash-py app
  
 - 🌐 [Datatable documentation](https://dash.plotly.com/datatable)
+  
+- 🎥 [Charming Data - Youtube channel](https://www.youtube.com/c/charmingdata)
 
 ---
 
@@ -112,12 +116,53 @@ Some Dash apps from last year (Heroku not working):
 
 - [Dash Gallery](https://dash.gallery/Portal/)
 
+---
+
+## `Dash`
+
+* Dash is a Open Source Python library for creating **reactive**, Web-based applications
+* Dash applications are web servers running Flask and communicating JSON packets over HTTP requests. Dash’s frontend renders components using React.js.
+
+---
+
+> While Dash apps are viewed in the web browser, you don’t have to write any Javascript or HTML. Dash provides a Python interface to a rich set of interactive web-based components.
+
+:::footer
+
+[Introducing Dash](https://medium.com/plotly/introducing-dash-5ecf7191b503)
+
+:::
+
+---
+
+
+## Dash app 
+#### Basic structure
+
+```python
+from dash import dash, html
+
+
+app = dash.Dash(__name__)
+
+app.layout = html.Div('I am alive!!')
+
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
+
+---
+
+## Dash app
+#### Basic structure: comparison with Shiny
+
+![](img/shiny+dash2.png)
 
 ---
 
 ## Before starting
 #### What platform are we going to use for development?
-1. VS Code
+1. VS Code  
 2. Jupyter Lab
 
 ---
@@ -142,9 +187,7 @@ app.run_server(mode='inline')
 
 :::footer
 
-[Example](https://colab.research.google.com/drive/161ZTOzLWd12yNmf6I0c2we9zGOI5mRRZ?usp=sharing) - 
- ⚠️ Potential [issue](https://github.com/plotly/dash/issues/1
-https://medium.com/plotly/introducing-jupyterdash-811f1f57c02e)
+[Example](https://colab.research.google.com/drive/161ZTOzLWd12yNmf6I0c2we9zGOI5mRRZ?usp=sharing) 
 
 :::
 
@@ -162,20 +205,22 @@ https://medium.com/plotly/introducing-jupyterdash-811f1f57c02e)
 
 ## VS Code
 #### Workflow to develop your Dash app
-1. Install `532.yml` conda environment and activate it:
+1. Install `dataviz-532.yml` conda environment and activate it:
 
 ```bash
-conda env create -f 532.yaml
+conda env create -f dataviz-532.yaml
 ```
 
-2. Keep a terminal open to run `python app.py`
+2. Run `python app.py`
 
 ---
 
 ## VS Code
 #### Workflow to develop your Dash app
 
-3. Open in your command palette `Simple browser: show` and paste there the url where dash is running. Click the button `split editor right` to see the script and the browser at the same time.
+3. Open *command palette* -> `Simple browser: show`. 
+   - Paste there the url where dash is running. 
+   - Click the button `split editor right` if you want to see the script and the browser in the screen at the same time.
 
 ```bash
 $ python app.py
@@ -191,6 +236,10 @@ This feature is activated by default when you run your app with the argument `de
 ```python
 app.run_server(debug=True) 
 ```
+
+# DEMO: workflow and basic structure {background-color="#F1FFFA"}
+_basic-app.py_
+
 ---
 
 ## Dash 2.8.3 (Feb 2023)
@@ -237,8 +286,8 @@ https://community.plotly.com/t/dash-2-1-0-released/60548
 
 ---
 
-### Other changes introduced in Dash 2.0.0
-_be careful when the examples you can find online_
+### Other changes introduced in Dash 2.0.0 (2021)
+_be careful with the examples you find online_
   
 **Dash 1.x**
 
@@ -251,7 +300,7 @@ import dash_table
 **Dash 2.x**
 
 ```python
-from dash import Dash, html, dcc, dash_table
+from dash import dash, html, dcc, dash_table
 ```
 
 :::footer
@@ -261,47 +310,7 @@ from dash import Dash, html, dcc, dash_table
 
 #  How can we create a basic **Dash App**? {background-color="#F1FFFA"}
 
----
 
-## `Dash`
-
-* Dash is a Open Source Python library for creating **reactive**, Web-based applications
-* Written on top of `Plotly.js` and `React.js`
-
----
-
-> While Dash apps are viewed in the web browser, you don’t have to write any Javascript or HTML. Dash provides a Python interface to a rich set of interactive web-based components.
-
-:::footer
-
-[Introducing Dash](https://medium.com/plotly/introducing-dash-5ecf7191b503)
-
-:::
-
----
-
-
-## Dash app 
-#### Basic structure
-
-```python
-from dash import dash, html
-
-
-app = dash.Dash(__name__)
-
-app.layout = html.Div('I am alive!!')
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
-```
-
----
-
-## Dash app
-#### Basic structure: comparison with Shiny
-
-![](img/shiny+dash2.png)
 
 ---
 
@@ -309,9 +318,9 @@ if __name__ == '__main__':
 #### Where is the HTML code?
 
 
-`html.*` (and `dbc.*`) -> (~**layout functions** in Shiny)
+`html.*` (and `dbc.*`) -> (~**Layout functions** in Shiny)
 
-`dcc.*` -> are the Widgets (~**Input functions** in Shiny)
+`dcc.*` -> the Widgets (~**Input functions** in Shiny)
 
 ---
 
@@ -321,7 +330,7 @@ if __name__ == '__main__':
 The **Dash HTML Components** (`dash.html`) module provides classes for all of the HTML tags, and the keyword arguments describe the HTML attributes like style, className, and id.
 
 :::footer
-[Mozilla webpage](https://developer.mozilla.org/en-US/docs/Web/HTML) - [`html.Div` component as example](https://dash.plotly.com/dash-html-components/div)
+[Mozilla webpage - Div element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) - [`html.Div` component as example](https://dash.plotly.com/dash-html-components/div)
 :::
 
 ---
@@ -340,7 +349,7 @@ The **Dash Core Components** (`dash.dcc`) module generates higher-level componen
 ## Dash UI
 #### 🌐 [3. `dbc.*`](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/)
 
-**You can add themes, inputs and layout functions with this library**
+**You can add themes and layout functions with `dash_bootstrap_components` library**
 
 ```python
 import dash_bootstrap_components as dbc
@@ -355,10 +364,69 @@ https://dash-bootstrap-components.opensource.faculty.ai/docs/quickstart/
 ---
 
 ## Dash UI
+#### Multi-page app navbar
+
+`Dash 2.5.*`: *Dash Pages* implements features to simplify creating a multi-page app, handling URL routing and offering an easy way to structure and define the pages in your app.
+
+- 📹 [Create Multipage Web App with Dash Pages](https://www.youtube.com/watch?v=pJMZ0r84Rqs)
+
+- [navbar code]()
+
+:::footer
+Extracted from [this web.](https://community.plotly.com/t/dash-2-5-released-easier-multi-page-apps-component-properties/64925)
+:::
+
+
+---
+
+## Dash UI
+#### Multi-page app with Dash Pages:
+
+1 . Create individual `.py` files for each page in your app, and put them in a /pages directory.  
+  
+2. In each of these page files:
+   - Add a `dash.register_page(__name__)`, which tells Dash that this is a page in your app.
+   - Define the page’s content within a variable or function called `layout`.
+   
+   
+---
+
+## Dash UI
+#### Multi-page app with Dash Pages:
+
+3. In your main app file, `app.py`:
+   - When declaring your app, set `use_pages` to `True`: `app = Dash(__name__, use_pages=True)`
+   - Add `dash.page_container` in your app’s layout where you want the content of the pages to be displayed for when the user visits one of the app’s page paths.
+
+
+:::footer
+Extracted from [this web.](https://community.plotly.com/t/dash-2-5-released-easier-multi-page-apps-component-properties/64925)
+:::
+
+---
+
+## Dash UI
+#### Single-page layout: a sidebar
+
+- [Sidebar](https://dash-bootstrap-components.opensource.faculty.ai/examples/simple-sidebar/)
+
+::: footer
+[`className` argument customization](https://getbootstrap.com/docs/5.0/content/typography/)
+:::
+
+
+
+# DEMO: Sidebar and dropdown menu {background-color="#F1FFFA"}
+_sidebar-example.py_
+
+---
+
+## Dash UI
 #### Themes: `CSS` or `dbc.*`
 
-**Option 1** - Using a `CSS` file
-_Note: Maybe your company will have a CSS file with their custom style_
+**Option 1** - Using a `CSS` file  
+
+_Note: Your company may have a CSS file with their custom style_
 
 ```python
 from dash import dash, html
@@ -366,7 +434,16 @@ from dash import dash, html
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css']) 
 ```
 
---
+:::footer
+If you have a .css file you should locate it in a folder called `assert` 
+:::
+
+---
+
+## Dash UI
+#### Themes: `CSS` or `dbc.*`
+
+**Option 1** - Using a `CSS` file
 
 You can also style individual HTML components:
 
@@ -393,7 +470,9 @@ ui <- fluidPage(
   )
 ```
 
-and 
+::: footer
+Open the link to see all the available ways to do this in Shiny
+:::
 
 ---
 
@@ -458,9 +537,10 @@ app = Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP])
 ### Layout components
 
 There are three main layout components in `dash-bootstrap-components`:
-* Container `dbc.Container()`  
-    * Row `dbc.Row()`
-       * Col `dbc.Col()`
+
+- Container `dbc.Container()`    
+    - Row `dbc.Row()`  
+       - Col `dbc.Col()`
 
 :::footer
 [`dash-bootstrap-components` documentation](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/)
@@ -470,7 +550,7 @@ There are three main layout components in `dash-bootstrap-components`:
 
 ### Boostrap grid system
 
-The Bootstrap grid has **twelve columns**, and [six responsive tiers](https://getbootstrap.com/docs/5.1/layout/grid/#grid-options) (allowing you to specify different behaviors on different screen sizes)
+The Bootstrap grid has **twelve columns**, and [six responsive tiers](https://getbootstrap.com/docs/5.1/layout/grid/#grid-options) .
 
 ```{r echo=FALSE, out.width=400, fig.align='center'}
 knitr::include_graphics("img/boostrap.png")
@@ -502,30 +582,23 @@ knitr::include_graphics("img/boostrap.png")
 
 
 
-# DEMO: Basic Dash-py app + UI {background-color="#F1FFFA"}
 
-
-
----
-
-## Where to start?
-#### Select a widget
-
-**Dash Documentation**
-- [Dash Bootstrap Theme Explorer](https://hellodash.pythonanywhere.com/theme_explorer)
-- [dash-bootstrap-components documentation](https://dash-bootstrap-components.opensource.faculty.ai)
-- [Boostrap cheatsheet](https://hackerthemes.com/bootstrap-cheatsheet/)
+# DEMO: Theme and bootstrap components {background-color="#F1FFFA"}
+_layout-example.py_
 
 ---
 
-## `dbc.Cards`
+## Dash UI
+#### `dbc.Cards()`
 
 ```python
  dbc.Card([
           dbc.CardHeader('Variable distribution'),
           dbc.CardBody(html.Iframe(
                        id='histogram',
-                       style={'border-width': '0', 'width': '100%', 'height': '400px'}))
+                       style={'border-width': '0',
+                       'width': '100%', 
+                       'height': '400px'}))
           ])
 ```
 If you want the plots in different cards you will have to split them in 2 callbacks!
@@ -535,6 +608,10 @@ If you want the plots in different cards you will have to split them in 2 callba
 # Extra - Dash layout 
 Read lecture notes and documentation
 
+
+- [dash-bootstrap-components documentation](https://dash-bootstrap-components.opensource.faculty.ai)
+
+- [Bootstrap cheatsheet](https://getbootstrap.com/docs/5.0/examples/cheatsheet/)
 
 
 # Taking action via Dash callbacks {background-color="#F1FFFA"}
@@ -599,6 +676,11 @@ Complete example in [Dash Component properties - Dash documentation](https://das
 ::: footer
 [Dash Component properties](https://dash.plotly.com/component-properties)
 :::
+
+
+
+# DEMO: Basic callback {background-color="#F1FFFA"}
+_simple-callback.py_
 
 ---
 
@@ -666,7 +748,8 @@ The user interface is connected 🔌 with the back-end code
 
 
 
----
+# DEMO: Dash-py app with a reactive plot {background-color="#F1FFFA"}
+_plot-app.py_
 
 # How a Dash app is different to a Shiny App? (**Comparison**) {background-color="#F1FFFA"}
 
@@ -700,17 +783,7 @@ The user interface is connected 🔌 with the back-end code
 
 * `input$<inputId>` and `output$<outputId>` in the server creates the links with the UI
 
----
 
-#### In Dash
-* If you can
-
-#### In Shiny 
-* You can have multiple `reactive({})` functions inside the server
-
-:::footer
-[Reactive expressions in Shiny](https://shiny.rstudio.com/tutorial/written-tutorial/lesson6/)
-:::
 ---
 
 ## Data Science reactivity: three ways
@@ -751,10 +824,10 @@ Being more opinionated lets you code more concisely. Being less opinionated give
 
 ## Learning outcomes {background-color="#FED9B7"}
 
-1. Identify how a Dash app is designed conceptually
-2. Run a Dash app on a local server
-3. Create the Dash app user interface with html and widgets (dropdowns, sliders, etc)
-4. Include an Altair plot in dash
-5. Control an Altair plot via widgets
+1. Identify **how a Dash app is designed** conceptually
+2. **Run a Dash app** on a local server
+3. **Create the Dash app user interface** with html and widgets (dropdowns, sliders, etc)
+4. **Include an Altair plot** in dash
+5. **Control an Altair plot** via widgets
 
 ---
